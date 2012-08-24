@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://krolltech.github.com/atom.xml" rel="self"/>
   <link href="http://krolltech.github.com/"/>
-  <updated>2012-08-24T22:47:54+08:00</updated>
+  <updated>2012-08-24T22:56:24+08:00</updated>
   <id>http://krolltech.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[hello]]></title>
+    <link href="http://krolltech.github.com/blog/2012/08/24/hello/"/>
+    <updated>2012-08-24T22:56:00+08:00</updated>
+    <id>http://krolltech.github.com/blog/2012/08/24/hello</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[good]]></title>
+    <link href="http://krolltech.github.com/blog/2012/08/24/good/"/>
+    <updated>2012-08-24T22:25:00+08:00</updated>
+    <id>http://krolltech.github.com/blog/2012/08/24/good</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>
