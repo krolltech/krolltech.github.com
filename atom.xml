@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[i => { :code 4 fun }]]></title>
+  <title><![CDATA[i => { :code4fun }]]></title>
   <link href="http://krolltech.github.com/atom.xml" rel="self"/>
   <link href="http://krolltech.github.com/"/>
-  <updated>2012-08-25T13:24:45+08:00</updated>
+  <updated>2012-08-25T15:17:58+08:00</updated>
   <id>http://krolltech.github.com/</id>
   <author>
     <name><![CDATA[zhuoyikang]]></name>
@@ -14,25 +14,219 @@
 
   
   <entry>
-    <title type="html"><![CDATA[正则表达式]]></title>
+    <title type="html"><![CDATA[ruby正则表达式]]></title>
     <link href="http://krolltech.github.com/blog/2012/08/25/blogtest/"/>
     <updated>2012-08-25T09:17:00+08:00</updated>
     <id>http://krolltech.github.com/blog/2012/08/25/blogtest</id>
-    <content type="html"><![CDATA[<p><b>1.历史</b></p>
-
-<p>
-正则表达式萌芽于1940年代的神经生理学研究，由著名数学家Stephen Kleene第一个正式描述。具体地说，Kleene归纳了前述的神经生理学研究，在一篇题为《正则集代数》的论文中定义了“正则集”，并在其上定义了一个代数系统，并且引入了一种记号系统来描述正则集，这种记号系统被他称为“正则表达式”。在理论数学的圈子里被研究了几十年之后，1968年，后来发明了UNIX系统的Ken Thompson第一个把正则表达式用于计算机领域，开发了qed和grep两个实用文本处理工具，取得了巨大成功。在此后十几年里，一大批一流计算机科学家和黑客对正则表达式进行了密集的研究和实践。在1980年代早期，UNIX运动的两个中心贝尔实验室和加州大学伯克利分校分别围绕grep工具对正则表达式引擎进行了研究和实现。与之同时，编译器“龙书”的作者Alfred Aho开发了Egrep工具，大大扩展和增强了正则表达式的功能。此后，他又与《C程序设计语言》的作者Brian Kernighan等三人一起发明了流行的awk文本编辑语言。到了1986年，正则表达式迎来了一次飞跃。先是C语言顶级黑客Henry Spencer以源代码形式发布了一个用C语言写成的正则表达式程序库（当时还不叫open source），从而把正则表达式的奥妙带入寻常百姓家，然后是技术怪杰Larry Wall横空出世，发布了Perl语言的第一个版本。自那以后，Perl一直是正则表达式的旗手，可以说，今天正则表达式的标准和地位是由Perl塑造的。Perl 5.x发布以后，正则表达式进入了稳定成熟期，其强大能力已经征服了几乎所有主流语言平台，成为每个专业开发者都必须掌握的基本工具。
-</p>
+    <content type="html"><![CDATA[<h3>1.定义方法</h3>
 
 
-<p><b>2.正则表达式引擎及分类</b>
-http://www.xwooo.com/LabView_261.html
-http://aiyooyoo.com/index.php/archives/244/
-http://lionheart.iteye.com/blog/233591</p>
+<p>在ruby中可以使用以下反斜线//和%r() ,%r||定义正则表达式:</p>
 
-<p>
-正则引擎主要可以分为两大类：一种是DFA，一种是NFA，它们在使用时表现出以下区别:
-</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">/Ruby/</span> <span class="c1">#匹配单词Ruby</span>
+</span><span class='line'><span class="sr">/[Rr]uby/</span> <span class="c1">#匹配单词 Ruby 或 ruby</span>
+</span><span class='line'><span class="sr">/^abc/</span> <span class="c1">#匹配行首的abc</span>
+</span><span class='line'><span class="sr">%r(xyz$)</span> <span class="c1">#匹配行尾的xyz</span>
+</span><span class='line'><span class="sr">%r|[0-9]*|</span> <span class="c1">#匹配数字由0-9数字组成序列，0次或多次.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>2.修饰符</h3>
+
+
+<p>可以在正则表达式后提供一些修饰符，以达到特殊的匹配意义：</p>
+
+<table style="width:100%;">
+<tr><td style="width:10%;"> 符号</td> <td style="text-align:left;"> 意义</td></tr>
+<tr><td><b>i</b></td><td style="text-align:left;">如果在修饰符中加上&#8221;i&#8221;，则正则将会取消大小写敏感性，即&#8221;a&#8221;和&#8221;A&#8221; 是一样的。</td></tr>
+<tr><td><b>o</b></td><td style="text-align:left;"></td> </tr>
+<tr><td><b>m</b></td><td style="text-align:left;">默认的&#8221;.&#8221;代表除了换行符以外的任何字符将会变成任意字符，也就是包括换行符！</td</tr>
+<tr><td><b>x</b></td><td style="text-align:left;">扩展正则表达式，允许空白，注释等</td</tr>
+</table>
+
+
+<p>演示一下修饰符的作用:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># i修饰</span>
+</span><span class='line'><span class="sr">/good/i</span> <span class="o">=~</span> <span class="s1">&#39;GOOD&#39;</span>  <span class="c1">#=&gt; 0   匹配成功</span>
+</span><span class='line'><span class="sr">/good/</span> <span class="o">=~</span> <span class="s1">&#39;GOOD&#39;</span> <span class="c1">#=&gt; nil 匹配失败</span>
+</span><span class='line'><span class="c1"># m修饰</span>
+</span><span class='line'><span class="sr">/go.*od/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;good</span><span class="se">\n</span><span class="s2">good&quot;</span><span class="p">)</span> <span class="o">=&gt;</span>  <span class="c1">#&lt;MatchData &quot;good&quot;&gt;</span>
+</span><span class='line'><span class="sr">/go.*od/m</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;good</span><span class="se">\n</span><span class="s2">good&quot;</span><span class="p">)</span> <span class="o">=&gt;</span>  <span class="c1">#&lt;MatchData &quot;good\ngood&quot;&gt;</span>
+</span><span class='line'><span class="c1"># x修饰</span>
+</span><span class='line'><span class="s2">&quot;good&quot;</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/o o/</span> <span class="p">,</span><span class="s2">&quot;i&quot;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kp">nil</span>
+</span><span class='line'><span class="s2">&quot;good&quot;</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/o o/x</span> <span class="p">,</span><span class="s2">&quot;i&quot;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s2">&quot;gid&quot;</span>  <span class="c1">#忽略空白</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>3.匹配代号</h3>
+
+
+<p>以下是一些简单的字符匹配，相信学习过正则的人都清楚：</p>
+
+<table style="width:100%;">
+<tr><td style="width:10%;"> 符号</td> <td style="text-align:left;"> 意义</td></tr>
+<tr><td><b>^</b></td><td style="text-align:left;">一行或者是字符串的开头</td></tr>
+<tr><td><b>$</b></td><td style="text-align:left;">一行或者是字符串的末尾</td></tr>
+<tr><td><b>.</b></td><td style="text-align:left;">除换行符外的所有字符</td></tr>
+<tr><td><b>/w</b></td><td style="text-align:left;">字母，数字，下划线</td> </tr>
+<tr><td><b>/W</b></td><td style="text-align:left;">除字母，数字，下划线以外的字符</td> </tr>
+<tr><td><b>/s</b></td><td style="text-align:left;">空格，\t换行符号</td</tr>
+<tr><td><b>/S</b></td><td style="text-align:left;">除了空格，\t换行符号以外的字符</td></tr>
+<tr><td><b>/d</b></td><td style="text-align:left;">数字字符</td></tr>
+<tr><td><b>/D</b></td><td style="text-align:left;">非数字字符</td> </tr>
+<tr><td><b>/b</b></td><td style="text-align:left;">单词边界</td></tr>
+<tr><td><b>/B</b></td><td style="text-align:left;">非单词边界</td> </tr>
+</table>
+
+
+
+
+<h3>4.量词符号</h3>
+
+
+<p>以下符号用来提供可选，重复次数等含义:</p>
+
+<table style="width:100%;">
+<tr><td style="width:10%;"> 符号</td> <td style="text-align:left;"> 意义</td></tr>
+<tr><td><b>*</b></td><td style="text-align:left;">匹配0次或多次</td></tr>
+<tr><td><b>+</b></td><td style="text-align:left;">匹配1次或多次</td></tr>
+<tr><td><b>?</b></td><td style="text-align:left;">匹配0次或1次</td></tr>
+<tr><td><b>{m,n}</b></td><td style="text-align:left;">匹配m到n次</td> </tr>
+</table>
+
+
+
+
+<h3>5.贪婪与非贪婪匹配</h3>
+
+
+<p>默认情况下量词符号修饰的正则符号是贪婪匹配，简单来讲，贪婪匹配将尽可能多的匹配它修饰的正则符号，而非贪婪匹配将尽可能少的匹配它修饰的正则符号:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 量词+ 进行贪婪匹配，匹配一个或多个数字字符，这里它匹配了全部</span>
+</span><span class='line'><span class="sr">/\d+/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;2323&quot;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="c1">#&lt;MatchData &quot;2323&quot;&gt;</span>
+</span><span class='line'><span class="c1"># 量词+ 进行非贪婪匹配，匹配一个或多个数字字符，这里它匹配了一个字符</span>
+</span><span class='line'><span class="sr">/\d+?/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;2323&quot;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="c1">#&lt;MatchData &quot;2&quot;&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这就是贪婪匹配与非贪婪匹配的区别， 不需要再多描述!</p>
+
+<p>ruby语言中在以下量词之后加?表示进行非贪婪匹配:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">*</span> <span class="o">=&gt;</span> <span class="o">*</span><span class="p">?</span>
+</span><span class='line'><span class="o">+</span> <span class="o">=&gt;</span> <span class="o">+</span><span class="p">?</span>
+</span><span class='line'><span class="p">{</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">}</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">}?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>6.正向预查和反向预查</h3>
+
+
+<p>正向预查匹配一个位置，但是不消耗其指定的匹配串.
+reg = /New World(?= Dictionary| Symphony)/ 表示匹配出在Dictionary 或 Symphony 之前的 New World，但是这次匹配并不消耗Dictionary 或Symphony 。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s1</span> <span class="o">=</span> <span class="s2">&quot;New World Dictionary&quot;</span>
+</span><span class='line'><span class="n">s2</span> <span class="o">=</span> <span class="s2">&quot;New World Symphony&quot;</span>
+</span><span class='line'><span class="n">s3</span> <span class="o">=</span> <span class="s2">&quot;New World Order&quot;</span>
+</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/New World(?= Dictionary| Symphony)/</span>
+</span><span class='line'><span class="n">reg</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="c1">#&lt;MatchData &quot;New World &quot;&gt;</span>
+</span><span class='line'><span class="n">reg</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="c1">#&lt;MatchData &quot;New World&quot;&gt;</span>
+</span><span class='line'><span class="n">reg</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="c1">#nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>反向预查则刚好相反，看看代码你就知道了:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s1</span> <span class="o">=</span> <span class="s2">&quot;New World Dictionary&quot;</span>
+</span><span class='line'><span class="n">s2</span> <span class="o">=</span> <span class="s2">&quot;New World Symphony&quot;</span>
+</span><span class='line'><span class="n">s3</span> <span class="o">=</span> <span class="s2">&quot;New World Order&quot;</span>
+</span><span class='line'><span class="n">reg</span> <span class="o">=</span> <span class="sr">/New World(?! Dictionary| Symphony)/</span>
+</span><span class='line'><span class="n">reg</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kp">nil</span>
+</span><span class='line'><span class="n">reg</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kp">nil</span>
+</span><span class='line'><span class="n">reg</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="c1">#&lt;MatchData &quot;New World&quot;&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>7.特殊符号</h3>
+
+
+<p>以下模式被赋予了特殊的含义:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">/[[:alnum:]]/</span> <span class="c1"># 等价于 [0-9a-zA-z]</span>
+</span><span class='line'><span class="sr">/[[:alpha:]]/</span> <span class="c1"># 等价于 [a-zA-Z]</span>
+</span><span class='line'><span class="sr">/[[:blank:]]/</span> <span class="c1"># 空格或 tab</span>
+</span><span class='line'><span class="sr">/[[:cntrl:]]/</span> <span class="c1"># ctrl</span>
+</span><span class='line'><span class="sr">/[[:digit:]]/</span> <span class="c1"># [0-9]</span>
+</span><span class='line'><span class="sr">/[[:graph:]]/</span> <span class="c1"># 非空白字符 (excludes spaces, control characters, and similar)</span>
+</span><span class='line'><span class="sr">/[[:lower:]]/</span> <span class="c1"># 等价于 [a-z]</span>
+</span><span class='line'><span class="sr">/[[:print:]]/</span> <span class="c1"># Like [:graph:], but includes the space character</span>
+</span><span class='line'><span class="sr">/[[:punct:]]/</span> <span class="c1"># Punctuation character</span>
+</span><span class='line'><span class="sr">/[[:space:]]/</span> <span class="c1"># 空白字符 ([:blank:], 换行,回车, 等.)</span>
+</span><span class='line'><span class="sr">/[[:upper:]]/</span> <span class="c1"># 大写字符，[A-Z]</span>
+</span><span class='line'><span class="sr">/[[:xdigit:]]/</span> <span class="c1"># 16进制数，等价于 [0-9a-fA-F] (i.e., 0-9a-fA-F)</span>
+</span><span class='line'><span class="sr">/[[:word:]]/</span> <span class="c1"># A character in one of the following Unicode general</span>
+</span><span class='line'>             <span class="c1"># categories Letter, Mark, Number, Connector_Punctuation</span>
+</span><span class='line'><span class="sr">/[[:ascii:]]/</span> <span class="c1"># A character in the ASCII</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
